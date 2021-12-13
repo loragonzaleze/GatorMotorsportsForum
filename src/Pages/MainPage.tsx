@@ -19,7 +19,7 @@ class Main extends React.Component<LandingProps, LandingState> {
       
     componentDidMount(){
         console.log('LOADED')
-        api.get("http://127.0.0.1:5000/secured").then(res => {
+        api.get("https://dev-gatormotorsportsapi.herokuapp.com/secured").then(res => {
             console.log('CALLED')
             console.log('RESPONSE FROM GET REQUEST IN MAIN')    
             console.log(res)
