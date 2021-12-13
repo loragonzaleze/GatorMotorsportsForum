@@ -1,13 +1,26 @@
 import React from "react"
 import api from "../utils/api"
-class Main extends React.Component {
-    state = {
 
+
+
+interface LandingProps {}
+interface LandingState {
+  
+}
+class Main extends React.Component<LandingProps, LandingState> {
+    constructor(props : any){
+        super(props)
+        this.state = {
+       
+        }
+
+        
     }
       
     componentDidMount(){
-        api.get("https://dev-gatormotorsportsapi.herokuapp.com/secured").then(res => {
-        
+        console.log('LOADED')
+        api.get("http://127.0.0.1:5000/secured").then(res => {
+            console.log('CALLED')
             console.log('RESPONSE FROM GET REQUEST IN MAIN')    
             console.log(res)
             })

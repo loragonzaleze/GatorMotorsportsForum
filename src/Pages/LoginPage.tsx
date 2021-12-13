@@ -27,7 +27,7 @@ class Login extends React.Component<LoginProps, LoginState> {
     
     componentDidMount(){
 
-         api.post("https://dev-gatormotorsportsapi.herokuapp.com/login", 
+         api.post("https://dev-gatormotorsportsapi.herokuapp.com/", 
         {
             username: "Edwin",
             password: "password"
