@@ -23,7 +23,7 @@ class Login extends React.Component<LoginProps, LoginState> {
         
     }
     componentDidMount(){
-        axios.get("https://dev-gatormotorsportsapi.herokuapp.com/mongodb").then(res =>{
+        axios.get("http://127.0.0.1:5000/getcookie").then(res =>{
             console.log("Retrieved collections")
             console.log(res)
         })
