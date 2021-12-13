@@ -1,11 +1,12 @@
 import axios from "axios";
 import React from "react";
-
+import api from "../utils/api"
 
 interface LoginProps {}
 interface LoginState {
     username : string,
-    password : string
+    password : string,
+    loggedIn: boolean
 }
     
 
@@ -14,7 +15,8 @@ class Login extends React.Component<LoginProps, LoginState> {
         super(props)
         this.state = {
             username : '',
-            password : ''
+            password : '',
+            loggedIn : false
         }
 
         this.handleUsernameSubmit = this.handleUsernameSubmit.bind(this)
@@ -22,15 +24,26 @@ class Login extends React.Component<LoginProps, LoginState> {
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
         
     }
+    
     componentDidMount(){
-        axios.get("http://127.0.0.1:5000/getcookie").then(res =>{
-            console.log("Retrieved collections")
+
+         api.post("https://dev-gatormotorsportsapi.herokuapp.com/login", 
+        {
+            username: "Edwin",
+            password: "password"
+        }        ).then(res => {
+            console.log('RESPONSE FROM PSOT REQUEST')    
             console.log(res)
-        })
-        .catch(error => {
-            console.log("error has occured")
-            console.log(error)
-        })
+            api.get("https://dev-gatormotorsportsapi.herokuapp.com/secured").then(res => {
+        
+            console.log('RESPONSE FROM GET REQUEST')    
+            console.log(res)
+            })
+            .catch(error => {
+                console.log("ERROR HAS Occured")
+                console.log(error)
+            })  
+        })    
     }
 
     handleUsernameChange(event){
