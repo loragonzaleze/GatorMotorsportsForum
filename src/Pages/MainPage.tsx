@@ -3,15 +3,19 @@ import api from "../utils/api"
 
 
 
-interface LandingProps {}
+interface LandingProps {
+    loggedIn : boolean
+
+}
 interface LandingState {
+
   
 }
 class Main extends React.Component<LandingProps, LandingState> {
     constructor(props : any){
         super(props)
         this.state = {
-       
+            
         }
 
         
@@ -19,21 +23,12 @@ class Main extends React.Component<LandingProps, LandingState> {
       
     componentDidMount(){
         console.log('LOADED')
-        api.get("https://dev-gatormotorsportsapi.herokuapp.com/secured").then(res => {
-            console.log('CALLED')
-            console.log('RESPONSE FROM GET REQUEST IN MAIN')    
-            console.log(res)
-            })
-            .catch(error => {
-                console.log("ERROR HAS Occured")
-                console.log(error)
-            })  
-
     }
     render() {
         return (
             <div>
                 <h1>THIS WILL BE THE MAIN FORUM PAGE</h1>
+                <p>logged IN: {this.props.loggedIn ? "YES" : "NO"}</p>
             </div>
         )
     }

@@ -2,25 +2,93 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Nav, Navbar, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { LoginContext } from '../context/loginContext';
+import {Menu} from 'semantic-ui-react'
+import '../ComponentsCSS/NavigationBar.css'
+import api from '../utils/api'
 
-class NavigationBar extends React.Component {
+
+interface NavBarProps {
+    loggedIn : boolean
+}
+
+interface NavBarState {
+    loggedInUsername : string
+}
+
+
+class NavigationBar extends React.Component<NavBarProps, NavBarState> {
+    static contextType = LoginContext
+    constructor(props){
+        super(props)
+        this.state = {
+            loggedInUsername : 'Blank'
+        }
+    }   
+
+    logout = () => {
+        api.get("https://dev-gatormotorsportsapi.herokuapp.com/logout")
+        .then(res => {
+            console.log("response: ")
+            console.log(res)
+        })
+    }
+
+    componentDidMount(){
+        this.setState({loggedInUsername : this.context.username})
+    }
     render(){
+        console.log("Current username")
+        console.log(this.context.username)
         return(
-        <Navbar bg="dark" variant="dark">
-            <Container>
-                <Navbar.Brand href="/">Gator Motorsports</Navbar.Brand>
-                <Nav className='me-auto'>
-                    <Nav.Link href="/main">Main</Nav.Link>
-                    <Nav.Link href="#Announcments">Announcements</Nav.Link>
-                </Nav>
-                <Nav>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                </Nav>
-               
-            </Container>
-          </Navbar>
+            <Menu 
+                inverted
+                attached='top'
+                borderless
+            >
+                
+                <Menu.Item
+                    name='Main'
+                    active={false}
+                    as={Link}
+                    to='/main'
+                >
+                    Main
+                </Menu.Item>
+                <Menu.Menu position='right'>
+                    {this.props.loggedIn ? 
+                    <Menu.Item
+                        name='login'
+                        onClick={this.logout}
+                    >
+                        Logout
+                    </Menu.Item> : 
+                    <Menu.Item
+                        name='login'
+                        active={false}
+                        as={Link}
+                        to='/login'
+                    >
+                        Login
+                    </Menu.Item>}
+                    
+
+                    
+                    {(this.props.loggedIn) ?
+                        <Menu.Item
+                            name='username'
+                        >
+                            {this.context.username}
+                        </Menu.Item> : null} 
+
+                </Menu.Menu>
+
+            </Menu>
+
+            
         )
     }
 }
 
 export default NavigationBar
+
