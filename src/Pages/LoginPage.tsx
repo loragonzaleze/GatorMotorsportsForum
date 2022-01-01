@@ -154,7 +154,6 @@ class Login extends React.Component<LoginProps, LoginState> {
 
     postLogin = () => {
         return (
-        
             <Navigate to="/main"/>
         )
         

@@ -9,7 +9,7 @@ import Home from './Pages/HomePage';
 import NavigationBar from './Components/NavigationBar';
 import NotFound from './Pages/NotFoundPage';
 import { LoginContext } from './context/loginContext';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import api from './utils/api';
 
 class App extends Component {
@@ -46,7 +46,7 @@ class App extends Component {
   render() {
     return (
       <LoginContext.Provider value={this.state.loginContext}>
-        <BrowserRouter>
+        <HashRouter>
           <div className="App">
             <NavigationBar loggedIn={this.state.loggedIn}/>
               <Routes>
@@ -56,7 +56,7 @@ class App extends Component {
                   <Route path="/*" element={<NotFound />} />
                 </Routes>
           </div>
-        </BrowserRouter>
+        </HashRouter>
       </LoginContext.Provider>
     )
 
