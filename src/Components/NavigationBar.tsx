@@ -56,7 +56,7 @@ class NavigationBar extends React.Component<NavBarProps, NavBarState> {
                     Main
                 </Menu.Item>
                 <Menu.Menu position='right'>
-                    {this.props.loggedIn ? 
+                    {(this.props.loggedIn || this.context.username !== 'Blank')? 
                     <Menu.Item
                         name='login'
                         onClick={this.logout}
@@ -74,7 +74,7 @@ class NavigationBar extends React.Component<NavBarProps, NavBarState> {
                     
 
                     
-                    {(this.props.loggedIn) ?
+                    {(this.props.loggedIn || this.context.username !== 'Blank') ?
                         <Menu.Item
                             name='username'
                         >

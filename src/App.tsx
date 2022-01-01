@@ -46,7 +46,7 @@ class App extends Component {
   render() {
     return (
       <LoginContext.Provider value={this.state.loginContext}>
-        <HashRouter>
+        <BrowserRouter>
           <div className="App">
             <NavigationBar loggedIn={this.state.loggedIn}/>
               <Routes>
@@ -56,7 +56,7 @@ class App extends Component {
                   <Route path="/*" element={<NotFound />} />
                 </Routes>
           </div>
-        </HashRouter>
+        </BrowserRouter>
       </LoginContext.Provider>
     )
 

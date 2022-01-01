@@ -161,7 +161,7 @@ class Login extends React.Component<LoginProps, LoginState> {
 
     render() {    
         return (
-           this.props.loggedIn ? this.postLogin() : this.preLogin()
+           (this.props.loggedIn || this.state.loggedIn) ? this.postLogin() : this.preLogin()
         )
     }
 }
