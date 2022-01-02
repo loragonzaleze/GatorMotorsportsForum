@@ -14,7 +14,9 @@ import api from './utils/api';
 
 class App extends Component {
 
+
   componentDidMount() {
+    console.log('RUNNIGN APP FIRST???????')
     api.get("https://dev-gatormotorsportsapi.herokuapp.com/secured")
          .then(res => {
              if(res.data.success){
@@ -44,6 +46,8 @@ class App extends Component {
   }
 
   render() {
+    console.log('RUNNIGN APP FIRST SECOND CHECK???????')
+
     return (
       <LoginContext.Provider value={this.state.loginContext}>
         <BrowserRouter>

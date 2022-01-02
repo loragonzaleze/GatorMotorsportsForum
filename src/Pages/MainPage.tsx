@@ -13,7 +13,11 @@ interface LandingState {
 class Main extends React.Component<LandingProps, LandingState> {
   
     static contextType = LoginContext
-    constructor(props : any){
+    constructor(props, context){
+        console.log('MAIN CONTEXT')
+        console.log(context)
+        console.log('MAIN Props: ')
+        console.log(props)
         super(props)
         this.state = {
             auth : this.props.loggedIn 
@@ -23,7 +27,6 @@ class Main extends React.Component<LandingProps, LandingState> {
     }
       
     componentDidMount(){
-        console.log('LOADED')
         this.setState({
             auth : (this.context.username !== 'Blank' || this.props.loggedIn)
         })
@@ -33,7 +36,7 @@ class Main extends React.Component<LandingProps, LandingState> {
         return (
             <div>
                 <h1>THIS WILL BE THE MAIN FORUM PAGE</h1>
-                <p>logged IN: {this.state.auth? "YES" : "NO"}</p>
+                <p>logged IN: {(this.context.username !== 'Blank' || this.props.loggedIn ) ? "YES" : "NO"}</p>
             </div>
         )
     }

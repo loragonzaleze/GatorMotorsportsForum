@@ -19,8 +19,12 @@ interface NavBarState {
 
 class NavigationBar extends React.Component<NavBarProps, NavBarState> {
     static contextType = LoginContext
-    constructor(props){
+    constructor(props, context){
         super(props)
+        console.log('INSIDE NAVBAR CONSTRUCTOR')
+        console.log(props)
+        console.log('CONTEXT FOR NAVBAR')
+        console.log(context)
         this.state = {
             loggedInUsername : 'Blank'
         }
@@ -71,9 +75,6 @@ class NavigationBar extends React.Component<NavBarProps, NavBarState> {
                     >
                         Login
                     </Menu.Item>}
-                    
-
-                    
                     {(this.props.loggedIn || this.context.username !== 'Blank') ?
                         <Menu.Item
                             name='username'
